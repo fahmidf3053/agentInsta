@@ -37,7 +37,7 @@ class ProfilesController extends Controller
             'image' => 'image',
         ]);
 
-        $imagepath="";
+        $imagepath='';
 
         if(request('image')){
 
@@ -48,11 +48,13 @@ class ProfilesController extends Controller
 
         }
 
+        $imageArray = ['image' => $imagepath];
+
         $user->profile->update(array_merge(
-            $data, ['image' => $imagepath]
+            $data, $imageArray ?? []
         ));
 
-        return redirect("/profile/{$user->id}");
+         return redirect("/profile/{$user->id}");
     }
 
 
